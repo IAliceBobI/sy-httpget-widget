@@ -1,16 +1,16 @@
 {
-  "name": "widget-sample",
-  "author": "Vanessa",
-  "url": "https://github.com/siyuan-note/widget-sample",
-  "version": "0.0.3",
+  "name": "sy-httpget-widget",
+  "author": "IAliceBobI",
+  "url": "https://github.com/IAliceBobI/sy-httpget-widget",
+  "version": "0.0.1",
   "minAppVersion": "2.8.8",
   "displayName": {
-    "default": "Widget Sample",
-    "zh_CN": "挂件示例"
+    "default": "Http Get Widget",
+    "zh_CN": "Http Get 挂件"
   },
   "description": {
-    "default": "This is a widget sample",
-    "zh_CN": "这是一个挂件示例"
+    "default": "This widget can be seen as a button placed in the content. It can initiate a GET request and, when combined with backend services, expand the functionality of SiYuan.",
+    "zh_CN": "此挂件可以看着是放在内容里的按钮。可以发起Get请求，配合后端服务对思源进行功能扩展。"
   },
   "readme": {
     "default": "README.md",
@@ -21,10 +21,9 @@
     "patreon": "",
     "github": "",
     "custom": [
-      "https://ld246.com/sponsor"
     ]
   },
   "keywords": [
-    "sample", "示例"
+    "Http Get"
   ]
 }
