@@ -1,59 +1,99 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hello, Bootstrap Table!</title>
-
-    <link rel="stylesheet" href="static/bootstrap.min.css">
-    <link rel="stylesheet" href="static/bootstrap-table.min.css">
+    <title>call http</title>
+    <link rel="stylesheet" href="/static/common.css">
 </head>
+
 <body>
-<table id="table">
-</table>
+    <div>
+        <label>Name</label>
+        <input type="text" id="nameField" class="input-field" /> <br>
+        <label>HTTP URL</label>
+        <input type="text" id="urlField" class="input-field" /> <br>
+        <button id="getButton" class="button">Insert</button>
+        <button id="callKeepButton" class="button">Msg</button>
+        <button id="callButton" class="button">Msg7s</button>
+    </div>
 
-<script src="static/jquery.min.js"></script>
-<script src="static/popper.min.js"></script>
-<script src="static/bootstrap.min.js"></script>
-<script src="static/bootstrap-table.min.js"></script>
+    <script src="/static/common.js"></script>
+    <script>
+        const storageName = "httpcall.json"
+        const namespace = "widgets"
 
-<script>
-    $.ajax({
-        method: "POST",
-        url: "http://127.0.0.1:6806/api/query/sql",
-        data: JSON.stringify({
-            "stmt": "SELECT * FROM blocks WHERE content LIKE'%content%' LIMIT 7"
-        })
-    }).done(result => {
-        console.log(result);
-
-        $('#table').bootstrapTable({
-            sortable: true,
-            columns: [{
-                field: 'id',
-                title: 'ID',
-                width: "100",
-            }, {
-                field: 'content',
-                title: 'Content',
-                width: "100",
-            }, {
-                field: 'type',
-                title: 'Type',
-                width: "20",
-            }, {
-                field: 'created',
-                title: 'Created',
-                width: "100",
-            }, {
-                field: 'updated',
-                title: 'Updated',
-                width: "100",
+        function shouldUpdate(data, blockID, url, name) {
+            if (!data) return true;
+            if (data[blockID]?.url != url || data[blockID]?.name != name) {
+                return true;
             }
-            ],
-            data: result.data,
-        });
-    })
-</script>
+            return false;
+        }
+        async function updateData(data, blockID, url, name) {
+            if (!data) data = {}
+            data[blockID] = { url, name }
+            return saveData(namespace, storageName, data)
+        }
+        async function validData(data) {
+            const currMs = await currentTime()
+            const lt = data['updated'] ?? 0
+            if (currMs - lt < 1000 * 60 * 60) {
+                return data
+            }
+            for (const key in data) {
+                if (!await checkBlockExist(key)) {
+                    delete data[key]
+                }
+            }
+            data['updated'] = currMs
+            return data
+        }
+
+        async function work() {
+            const blockID = getWidgetBlockInfo()
+
+            const urlField = document.getElementById("urlField");
+            const nameField = document.getElementById("nameField");
+            const data = await loadData(namespace, storageName, {})
+            urlField.value = data[blockID]?.url ?? "";
+            nameField.value = data[blockID]?.name ?? "";
+
+            async function process(needInsert, msgTimeout = 7000) {
+                const url = urlField.value;
+                const name = nameField.value;
+                let data = await loadData(namespace, storageName, {})
+                if (shouldUpdate(data, blockID, url, name)) {
+                    data = await validData(data)
+                    await updateData(data, blockID, url, name);
+                }
+                if (url) {
+                    let resp = await fetch(url)
+                    let text = await resp.text()
+                    if (needInsert) {
+                        text = "```\n" + text + "\n```"
+                        await insertBlockAfter(text, blockID)
+                    } else {
+                        text = `<h1>${name}</h1><br><h2>${text}</h2>`
+                        await pushMsg(text, msgTimeout)
+                    }
+                }
+            }
+
+            document.getElementById("getButton").addEventListener("click", async () => {
+                await process(true)
+            });
+            document.getElementById("callButton").addEventListener("click", async () => {
+                await process(false)
+            });
+            document.getElementById("callKeepButton").addEventListener("click", async () => {
+                await process(false, 0)
+            });
+        }
+        mainWarn(work)
+    </script>
+
 </body>
+
 </html>
