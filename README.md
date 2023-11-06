@@ -2,13 +2,14 @@
 
 # Http Get Widget
 
-This widget appears as a button placed within the content. It can initiate a Get request and, in conjunction with backend services, expand the functionality of the Source.
+![preview](./preview-2.png)
 
-See the image:
+This widget can be seen as a button placed within the content. It can initiate a Get request to extend the functionality of SY with the help of backend services.
+
+As shown in the image:
 
 ![preview](./preview.png)
 
 > The content entered in each widget will be persisted.
 
-> If a widget is deleted, its persisted data will also be cleared when used by other widgets.
-
+> For deleted widgets, their persisted data will also be cleaned up when used by other widgets.
