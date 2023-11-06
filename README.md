@@ -8,7 +8,7 @@ This widget can be seen as a button placed within the content. It can initiate a
 
 As shown in the image:
 
-![preview](./preview.png)
+![preview](./preview-1.png)
 
 > The content entered in each widget will be persisted.
 

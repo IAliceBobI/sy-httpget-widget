@@ -8,7 +8,7 @@
 
 如图：
 
-![preview](./preview.png)
+![preview](./preview-1.png)
 
 > 每个挂件所输入的内容都会持久化的。
 
