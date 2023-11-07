@@ -10,6 +10,6 @@ As shown in the image:
 
 ![preview](./preview-1.png)
 
-> The content entered in each widget will be persisted.
+**The content entered in each widget will be persisted.**
 
-> For deleted widgets, their persisted data will also be cleaned up when used by other widgets.
+**For deleted widgets, their persisted data will also be cleaned up when used by other widgets.**
