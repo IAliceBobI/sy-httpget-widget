@@ -2,7 +2,7 @@
   "name": "sy-httpget-widget",
   "author": "IAliceBobI",
   "url": "https://github.com/IAliceBobI/sy-httpget-widget",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "minAppVersion": "2.8.8",
   "displayName": {
     "default": "Http Get Widget",

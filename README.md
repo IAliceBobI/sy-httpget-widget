@@ -13,3 +13,7 @@ As shown in the image:
 **The content entered in each widget will be persisted.**
 
 **For deleted widgets, their persisted data will also be cleaned up when used by other widgets.**
+
+# Welcome to communication
+
+QQ Group: 263961482
