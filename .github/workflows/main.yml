@@ -16,6 +16,7 @@ jobs:
       - name: Run Script
         run: |
           chmod +x ./release.sh
+          bash ./release.sh
 
       - name: Release
         uses: ncipollo/release-action@v1
