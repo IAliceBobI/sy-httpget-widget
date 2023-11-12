@@ -14,6 +14,10 @@ As shown in the image:
 
 **For deleted widgets, their persisted data will also be cleaned up when used by other widgets.**
 
-# Welcome to communication
+# Bug Feedback and Suggestions
 
 QQ Group: 263961482
+
+[Alternatively, submit issues on GitHub](https://github.com/IAliceBobI/sy-httpget-widget/issues)
+
+[Or, you can submit your question on the official forum.](https://ld246.com/tag/siyuan)
