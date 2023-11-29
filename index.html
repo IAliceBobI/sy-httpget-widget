@@ -278,14 +278,14 @@
 
             const urlField = document.getElementById("urlField");
             const nameField = document.getElementById("nameField");
-            const data = await loadData(namespace, storageName, {})
+            const data = await loadData(namespace, storageName, {}) ?? {};
             urlField.value = data[blockID]?.url ?? "";
             nameField.value = data[blockID]?.name ?? "";
 
             async function process(needInsert, msgTimeout = 7000) {
                 const url = urlField.value;
                 const name = nameField.value;
-                let data = await loadData(namespace, storageName, {})
+                let data = await loadData(namespace, storageName, {}) ?? {};
                 if (shouldUpdate(data, blockID, url, name)) {
                     data = await validData(data)
                     await updateData(data, blockID, url, name);
