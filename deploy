@@ -1,0 +1,11 @@
+#!/bin/env zsh
+set -xe
+
+projDir=${0:a:h}
+projName=${projDir:t}
+targetDir="${SYPLUGINDIR:h}/widgets/${projName}"
+rm -rf ${targetDir}
+mkdir -p ${targetDir}
+rsync -ru --exclude={'.git','.github'} "$projDir/" "$targetDir/"
+
+
