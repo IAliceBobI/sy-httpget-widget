@@ -238,7 +238,6 @@
         <input type="text" id="nameField" class="input-field" /> <br>
         <label>HTTP URL</label>
         <input type="text" id="urlField" class="input-field" /> <br>
-        <button id="getButton" class="button">Insert</button>
         <button id="callButton" class="button">Msg7s</button>
     </div>
     <script>
@@ -301,10 +300,6 @@
                     }
                 }
             }
-
-            document.getElementById("getButton").addEventListener("click", async () => {
-                await process(true)
-            });
             document.getElementById("callButton").addEventListener("click", async () => {
                 await process(false)
             });
