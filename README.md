@@ -2,13 +2,9 @@
 
 # Http Get Widget
 
-![preview](./preview-11.png)
+![preview](./btnView.png)
 
 This widget can be seen as a button placed within the content. It can initiate a Get request to extend the functionality of SY with the help of backend services.
-
-As shown in the image:
-
-![preview](./preview-22.png)
 
 **The content entered in each widget will be persisted.**
 
